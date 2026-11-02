@@ -1,0 +1,207 @@
+schema = 1
+id = "vibrant"
+name = "Vibrant"
+version = "0.8.0"
+api = "0.1"
+description = "Sildur-style vibrance: real sun shadows, water reflections with ripples, god rays, waving leaves, coloured block light."
+authors = ["charon"]
+license = "MIT"
+shared = ["common.wgsl"]
+
+[sky]
+file = "sky.wgsl"
+name = "Vivid sky"
+
+[material]
+file = "material.wgsl"
+name = "Lit surface"
+
+[[tags]]
+id = "foliage"
+sprites = ["block/*_leaves", "block/grass", "block/short_grass", "block/tall_grass*", "block/fern", "block/large_fern*", "block/vine", "block/sweet_berry_bush", "block/dead_bush", "block/wheat*", "block/carrots*", "block/potatoes*", "block/beetroots*", "block/nether_wart*", "block/sugar_cane*", "block/big_dripleaf", "block/small_dripleaf", "block/azalea_leaves*", "block/flowering_azalea_leaves*", "block/mangrove_roots", "block/hanging_roots"]
+
+[shadow]
+resolution = 1024
+distance = 56.0
+
+[reflection]
+option = "water_fade"
+
+[[lights]]
+color = [1.0, 0.65, 0.35]
+blocks = ["torch", "wall_torch", "lantern", "campfire", "fire", "*candle", "jack_o_lantern", "furnace", "blast_furnace"]
+
+[[lights]]
+color = [0.35, 0.7, 1.0]
+blocks = ["soul_torch", "soul_wall_torch", "soul_lantern", "soul_campfire", "soul_fire"]
+
+[[lights]]
+color = [1.0, 0.45, 0.2]
+blocks = ["lava", "magma_block", "shroomlight", "crying_obsidian", "respawn_anchor"]
+
+[[lights]]
+color = [0.55, 0.85, 1.0]
+blocks = ["sea_lantern", "conduit", "glow_lichen", "ochre_froglight", "verdant_froglight", "pearlescent_froglight", "end_rod", "sculk_sensor", "calibrated_sculk_sensor"]
+
+[[lights]]
+color = [0.95, 0.8, 0.55]
+blocks = ["glowstone", "redstone_lamp", "redstone_torch", "redstone_wall_torch", "beacon", "enchanting_table"]
+
+[[post]]
+file = "post/bloom.wgsl"
+name = "Bloom"
+output = "halo"
+scale = 0.25
+
+[[post]]
+file = "post/ssao.wgsl"
+name = "Ambient occlusion"
+output = "ao"
+scale = 0.5
+
+[[post]]
+file = "post/ssao_blur.wgsl"
+name = "AO blur"
+output = "ao_smooth"
+scale = 0.5
+
+[[post]]
+file = "post/shafts.wgsl"
+name = "Sun shafts"
+output = "shafts"
+scale = 0.25
+
+[[post]]
+file = "post/grade.wgsl"
+name = "Vibrant grade"
+
+[[options]]
+id = "vibrance"
+name = "Vibrance"
+description = "How much the pack pushes the colours apart."
+type = "float"
+default = 0.55
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "saturation"
+name = "Saturation"
+type = "float"
+default = 1.25
+min = 0.0
+max = 2.0
+step = 0.05
+
+[[options]]
+id = "bloom"
+name = "Bloom strength"
+description = "The halo around the sun, lava and torches."
+type = "float"
+default = 0.6
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "shadow_softness"
+name = "Shadow softness"
+description = "How soft the sun's shadow edges are."
+type = "float"
+default = 0.5
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "shadow_darkness"
+name = "Shadow darkness"
+description = "How dark a fully shadowed surface gets."
+type = "float"
+default = 0.45
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "leaf_wave"
+name = "Waving leaves"
+description = "How far leaves and grass swing in the wind."
+type = "float"
+default = 0.5
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "sun_shafts"
+name = "Sun shafts"
+description = "Light shafts through trees when you look toward the sun."
+type = "float"
+default = 0.55
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "water_fade"
+name = "Water reflections"
+description = "Water reflections and clarity: 0 vanilla water, higher clearer."
+type = "float"
+default = 0.5
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "advanced_shading"
+name = "Advanced shading"
+description = "Sildur-style: real sun shadows on trees, blocks and terrain, richer lighting. Off for the light, clean look."
+type = "bool"
+default = false
+
+[[options]]
+id = "world_reflections"
+name = "World reflections"
+description = "Everything reflects a little of its surroundings, not just water: off for vanilla surfaces, on for a subtle glossy world."
+type = "bool"
+default = false
+
+[[options]]
+id = "contrast"
+name = "Contrast"
+type = "float"
+default = 0.45
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "vignette"
+name = "Vignette"
+type = "bool"
+default = true
+
+[[options]]
+id = "ssao_strength"
+name = "Ambient occlusion"
+description = "Soft shadows in corners, under trees and inside: depth the sun's shadow map cannot give."
+type = "float"
+default = 0.75
+min = 0.0
+max = 1.0
+step = 0.05
+
+[[options]]
+id = "ssao_radius"
+name = "AO radius"
+description = "How far the corner darkening reaches, in blocks."
+type = "float"
+default = 2.0
+min = 0.5
+max = 3.5
+step = 0.1
+
+[budget]
+gpu_ms = 2.0
